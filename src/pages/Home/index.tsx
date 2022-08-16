@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { Header } from '../../components/Header'
+import { PostsContext } from '../../contexts/PostsContext'
 import { api } from '../../lib/axios'
 import { UserCard } from './components/UserCard'
 import { HomeContainer } from './styles'
@@ -16,6 +17,10 @@ interface User {
 
 export function Home() {
   const [user, setUser] = useState<User>({} as User)
+
+  const { posts, fetchPosts } = useContext(PostsContext)
+
+  console.log(posts)
 
   useEffect(() => {
     async function loadUser() {
