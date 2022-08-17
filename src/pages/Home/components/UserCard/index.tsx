@@ -39,7 +39,7 @@ export function UserCard({ data }: UserCardProps) {
       <UserInfos>
         <NameAndLink>
           <h1>{name}</h1>
-          <a href={html_url}>
+          <a href={html_url} target="_blank" rel="noreferrer">
             Github
             <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
           </a>
