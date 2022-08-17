@@ -24,15 +24,13 @@ interface User {
   company: string
 }
 
-export function UserCard({
-  name,
-  login,
-  bio,
-  followers,
-  avatar_url,
-  html_url,
-  company,
-}: User) {
+interface UserCardProps {
+  data: User
+}
+
+export function UserCard({ data }: UserCardProps) {
+  const { avatar_url, name, html_url, bio, login, company, followers } = data
+
   return (
     <UserCardContainer>
       <AvatarContainer>

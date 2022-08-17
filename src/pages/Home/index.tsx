@@ -2,8 +2,9 @@ import { useContext, useEffect, useState } from 'react'
 import { Header } from '../../components/Header'
 import { PostsContext } from '../../contexts/PostsContext'
 import { api } from '../../lib/axios'
+import { PostCard } from './components/PostCard'
 import { UserCard } from './components/UserCard'
-import { HomeContainer } from './styles'
+import { HomeContainer, Posts } from './styles'
 
 interface User {
   name: string
@@ -20,8 +21,6 @@ export function Home() {
 
   const { posts, fetchPosts } = useContext(PostsContext)
 
-  console.log(posts)
-
   useEffect(() => {
     async function loadUser() {
       const response = await api.get('users/jvolima')
@@ -34,15 +33,18 @@ export function Home() {
 
   return (
     <HomeContainer>
-      <UserCard
-        name={user.name}
-        bio={user.bio}
-        avatar_url={user.avatar_url}
-        company={user.company}
-        followers={user.followers}
-        html_url={user.html_url}
-        login={user.login}
-      />
+      <UserCard data={user} />
+
+      <Posts>
+        {posts.map((post) => (
+          <PostCard
+            key={String(post.created_at)}
+            title={post.title}
+            created_at={post.created_at}
+            body={post.body}
+          />
+        ))}
+      </Posts>
     </HomeContainer>
   )
 }
