@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const UserCardContainer = styled.div`
   width: 100%;
-  height: 13.25rem;
+  padding: 2rem 2.5rem;
 
   background: ${(props) => props.theme['base-profile']};
   box-shadow: 0px 2px 28px rgba(0, 0, 0, 0.2);
@@ -12,6 +12,11 @@ export const UserCardContainer = styled.div`
   align-items: center;
   gap: 2rem;
   padding: 2rem 2rem 2rem 2.5rem;
+
+  @media (max-width: 700px) {
+    flex-direction: column;
+    padding: 1rem;
+  }
 `
 
 export const AvatarContainer = styled.div`
@@ -37,6 +42,10 @@ export const NameAndLink = styled.div`
   justify-content: space-between;
   align-items: flex-start;
 
+  @media (max-width: 700px) {
+    flex-direction: column;
+  }
+
   h1 {
     font-size: 1.5rem;
     font-weight: 700;
@@ -55,6 +64,10 @@ export const NameAndLink = styled.div`
     display: flex;
     align-items: center;
     gap: 0.5rem;
+
+    &:hover {
+      border-bottom: 1px solid ${(props) => props.theme.blue};
+    }
   }
 `
 
@@ -62,6 +75,10 @@ export const AdditionalInfos = styled.div`
   margin-top: 1.5rem;
   display: flex;
   gap: 1.5rem;
+
+  @media (max-width: 700px) {
+    flex-direction: column;
+  }
 
   div {
     display: flex;

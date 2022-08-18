@@ -1,10 +1,10 @@
 import { useContext, useEffect, useState } from 'react'
-import { Header } from '../../components/Header'
 import { PostsContext } from '../../contexts/PostsContext'
 import { api } from '../../lib/axios'
 import { PostCard } from './components/PostCard'
+import { SearchBox } from './components/SearchBox'
 import { UserCard } from './components/UserCard'
-import { HomeContainer, Posts } from './styles'
+import { HomeContainer, Posts, Publications } from './styles'
 
 interface User {
   name: string
@@ -34,6 +34,13 @@ export function Home() {
   return (
     <HomeContainer>
       <UserCard data={user} />
+
+      <Publications>
+        <h2>Publicações</h2>
+        <span>{posts.length} publicações</span>
+      </Publications>
+
+      <SearchBox />
 
       <Posts>
         {posts.map((post) => (
