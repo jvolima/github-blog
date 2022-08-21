@@ -1,5 +1,5 @@
 # github-blog
-## desafio do Ignite da rocketseat 
+## desafio da trilha de React da rocketseat 
 
 ## Stack
 - React
