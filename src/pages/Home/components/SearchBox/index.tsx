@@ -1,5 +1,21 @@
+import { useContext, useEffect, useState } from 'react'
+import { PostsContext } from '../../../../contexts/PostsContext'
 import { SearchBoxContainer } from './styles'
 
 export function SearchBox() {
-  return <SearchBoxContainer placeholder="Buscar conteúdo" type="text" />
+  const [text, setText] = useState('')
+  const { fetchPosts } = useContext(PostsContext)
+
+  useEffect(() => {
+    fetchPosts(text)
+  }, [text])
+
+  return (
+    <SearchBoxContainer
+      placeholder="Buscar conteúdo"
+      type="text"
+      value={text}
+      onChange={(e) => setText(e.target.value)}
+    />
+  )
 }

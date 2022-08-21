@@ -29,7 +29,7 @@ export function Home() {
     }
 
     loadUser()
-  }, [])
+  }, [fetchPosts])
 
   return (
     <HomeContainer>
