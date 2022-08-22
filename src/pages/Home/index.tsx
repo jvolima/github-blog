@@ -30,7 +30,7 @@ export function Home() {
 
     fetchPosts()
     loadUser()
-  }, [fetchPosts])
+  }, [])
 
   return (
     <HomeContainer>

@@ -43,7 +43,6 @@ export function PostsProvider({ children }: PostsProviderProps) {
 
     posts.forEach((post) => {
       if (post.body.includes(query)) {
-        console.log('here')
         setFilteredPosts((oldState) => [...oldState, post])
       }
     })
