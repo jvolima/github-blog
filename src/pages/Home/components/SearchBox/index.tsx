@@ -4,10 +4,10 @@ import { SearchBoxContainer } from './styles'
 
 export function SearchBox() {
   const [text, setText] = useState('')
-  const { fetchPosts } = useContext(PostsContext)
+  const { filterPosts } = useContext(PostsContext)
 
   useEffect(() => {
-    fetchPosts(text)
+    filterPosts(text)
   }, [text])
 
   return (

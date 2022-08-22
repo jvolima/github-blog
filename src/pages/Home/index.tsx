@@ -28,6 +28,7 @@ export function Home() {
       setUser(response.data)
     }
 
+    fetchPosts()
     loadUser()
   }, [fetchPosts])
 

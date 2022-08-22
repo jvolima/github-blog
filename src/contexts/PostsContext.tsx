@@ -14,7 +14,8 @@ interface Post {
 
 interface PostsContextType {
   posts: Post[]
-  fetchPosts: (query?: string) => Promise<void>
+  fetchPosts: () => Promise<void>
+  filterPosts: (query: string) => void
 }
 
 interface PostsProviderProps {
@@ -26,12 +27,26 @@ export const PostsContext = createContext({} as PostsContextType)
 export function PostsProvider({ children }: PostsProviderProps) {
   const [posts, setPosts] = useState<Post[]>([])
 
-  async function fetchPosts(query?: string) {
+  const [filteredPosts, setFilteredPosts] = useState<Post[]>([])
+
+  async function fetchPosts() {
     const response = await api.get(
-      `search/issues?q=${query || ''}%20repo:jvolima/github-blog`,
+      `search/issues?q=%20repo:jvolima/github-blog`,
     )
 
     setPosts(response.data.items)
+    setFilteredPosts(response.data.items)
+  }
+
+  function filterPosts(query: string) {
+    setFilteredPosts([])
+
+    posts.forEach((post) => {
+      if (post.body.includes(query)) {
+        console.log('here')
+        setFilteredPosts((oldState) => [...oldState, post])
+      }
+    })
   }
 
   useEffect(() => {
@@ -39,7 +54,9 @@ export function PostsProvider({ children }: PostsProviderProps) {
   }, [])
 
   return (
-    <PostsContext.Provider value={{ posts, fetchPosts }}>
+    <PostsContext.Provider
+      value={{ posts: filteredPosts, fetchPosts, filterPosts }}
+    >
       {children}
     </PostsContext.Provider>
   )
