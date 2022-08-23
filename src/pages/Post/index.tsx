@@ -1,7 +1,8 @@
 import { useContext } from 'react'
+import ReactMarkdown from 'react-markdown'
 import { PostsContext } from '../../contexts/PostsContext'
 import { Card } from './components/Card'
-import { PostContainer } from './styles'
+import { Content, PostContainer } from './styles'
 
 export function Post() {
   const { selectedPost } = useContext(PostsContext)
@@ -17,6 +18,10 @@ export function Post() {
           login: selectedPost.user.login,
         }}
       />
+
+      <Content>
+        <ReactMarkdown>{selectedPost.body}</ReactMarkdown>
+      </Content>
     </PostContainer>
   )
 }

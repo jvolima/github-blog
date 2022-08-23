@@ -5,6 +5,7 @@ import ptBR from 'date-fns/locale/pt-BR'
 import { Link } from 'react-router-dom'
 import { useContext } from 'react'
 import { PostsContext } from '../../../../contexts/PostsContext'
+import ReactMarkdown from 'react-markdown'
 
 interface PostCardProps {
   id: number
@@ -33,7 +34,7 @@ export function PostCard({ id, slug, title, created_at, body }: PostCardProps) {
           <h1>{title}</h1>
           <time>{date}</time>
         </div>
-        <p>{body}</p>
+        <ReactMarkdown className="markdown-paragraph">{body}</ReactMarkdown>
       </PostCardContainer>
     </Link>
   )

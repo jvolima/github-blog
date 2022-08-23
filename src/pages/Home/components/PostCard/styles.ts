@@ -31,7 +31,7 @@ export const PostCardContainer = styled.div`
     }
   }
 
-  p {
+  .markdown-paragraph {
     margin-top: 1.25rem;
     font-size: 1rem;
     font-weight: 400;
