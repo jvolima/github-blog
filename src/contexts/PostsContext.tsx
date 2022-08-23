@@ -1,8 +1,10 @@
 import { createContext, ReactNode, useEffect, useState } from 'react'
+import slugify from 'slugify'
 import { api } from '../lib/axios'
 
 interface Post {
   title: string
+  slug: string
   body: string
   created_at: Date
   html_url: string
@@ -34,8 +36,19 @@ export function PostsProvider({ children }: PostsProviderProps) {
       `search/issues?q=%20repo:jvolima/github-blog`,
     )
 
-    setPosts(response.data.items)
-    setFilteredPosts(response.data.items)
+    const dataPosts = response.data.items
+
+    dataPosts.forEach((post: Post) => {
+      post.slug = slugify(post.title, {
+        lower: true,
+        trim: true,
+      })
+    })
+
+    console.log(dataPosts)
+
+    setPosts(dataPosts)
+    setFilteredPosts(dataPosts)
   }
 
   function filterPosts(query: string) {

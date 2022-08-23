@@ -28,7 +28,6 @@ export function Home() {
       setUser(response.data)
     }
 
-    fetchPosts()
     loadUser()
   }, [])
 
@@ -38,7 +37,7 @@ export function Home() {
 
       <Publications>
         <h2>Publicações</h2>
-        <span>{posts.length} publicações</span>
+        <span>{posts?.length} publicações</span>
       </Publications>
 
       <SearchBox />
