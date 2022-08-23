@@ -45,7 +45,9 @@ export function Home() {
       <Posts>
         {posts.map((post) => (
           <PostCard
-            key={String(post.created_at)}
+            key={post.id}
+            id={post.id}
+            slug={post.slug}
             title={post.title}
             created_at={post.created_at}
             body={post.body}

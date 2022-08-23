@@ -3,6 +3,7 @@ import slugify from 'slugify'
 import { api } from '../lib/axios'
 
 interface Post {
+  id: number
   title: string
   slug: string
   body: string
@@ -16,8 +17,10 @@ interface Post {
 
 interface PostsContextType {
   posts: Post[]
+  selectedPost: Post
   fetchPosts: () => Promise<void>
   filterPosts: (query: string) => void
+  selectPost: (id: number) => void
 }
 
 interface PostsProviderProps {
@@ -28,8 +31,15 @@ export const PostsContext = createContext({} as PostsContextType)
 
 export function PostsProvider({ children }: PostsProviderProps) {
   const [posts, setPosts] = useState<Post[]>([])
+  const [selectedPost, setSelectedPost] = useState<Post>({} as Post)
 
   const [filteredPosts, setFilteredPosts] = useState<Post[]>([])
+
+  function selectPost(id: number) {
+    const post = posts.find((item) => item.id === id) as Post
+
+    setSelectedPost(post)
+  }
 
   async function fetchPosts() {
     const response = await api.get(
@@ -44,8 +54,6 @@ export function PostsProvider({ children }: PostsProviderProps) {
         trim: true,
       })
     })
-
-    console.log(dataPosts)
 
     setPosts(dataPosts)
     setFilteredPosts(dataPosts)
@@ -67,7 +75,13 @@ export function PostsProvider({ children }: PostsProviderProps) {
 
   return (
     <PostsContext.Provider
-      value={{ posts: filteredPosts, fetchPosts, filterPosts }}
+      value={{
+        posts: filteredPosts,
+        selectedPost,
+        selectPost,
+        fetchPosts,
+        filterPosts,
+      }}
     >
       {children}
     </PostsContext.Provider>
