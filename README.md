@@ -1,5 +1,5 @@
-# github-blog
-## desafio da trilha de React da rocketseat 
+# Github-blog
+## Desafio da trilha de React da rocketseat 
 
 ## Stack
 - React
