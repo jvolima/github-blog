@@ -9,4 +9,5 @@
 
 ## Aprendizados
 - Utilizar React Markdown para transformar um texto markdown em html.
+- Context API para comunicar páginas.
 - Rotas dinâmicas com o React Router Dom.
